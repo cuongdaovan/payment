@@ -17,8 +17,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myFirstApp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+            <state relative-caret-position="255">
+              <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="19" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -38,17 +38,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orderOfCustomer.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/myFirstApp/templates/myFirstApp/orderOfCustomer.html">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/myFirstApp/templates/myFirstApp/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="41" lean-forward="false" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-              <folding />
+            <state relative-caret-position="289">
+              <caret line="53" column="70" lean-forward="false" selection-start-line="53" selection-start-column="70" selection-end-line="53" selection-end-column="70" />
+              <folding>
+                <element signature="n#style#0;n#header#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="listCustomer.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="listCustomer.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myFirstApp/templates/myFirstApp/listCustomer.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
@@ -128,7 +130,6 @@
         <option value="$PROJECT_DIR$/myFirstApp/migrations/0002_auto_20181015_0208.py" />
         <option value="$PROJECT_DIR$/django_web/urls.py" />
         <option value="$PROJECT_DIR$/myFirstApp/tests.py" />
-        <option value="$PROJECT_DIR$/myFirstApp/templates/myFirstApp/base.html" />
         <option value="$PROJECT_DIR$/myFirstApp/templates/myFirstApp/index.html" />
         <option value="$PROJECT_DIR$/myFirstApp/templates/myFirstApp/categoryIndex.html" />
         <option value="$PROJECT_DIR$/myFirstApp/admin.py" />
@@ -143,6 +144,7 @@
         <option value="$PROJECT_DIR$/myFirstApp/templates/myFirstApp/listCustomer.html" />
         <option value="$PROJECT_DIR$/myFirstApp/urls.py" />
         <option value="$PROJECT_DIR$/myFirstApp/templates/myFirstApp/orderOfCustomer.html" />
+        <option value="$PROJECT_DIR$/myFirstApp/templates/myFirstApp/base.html" />
       </list>
     </option>
   </component>
@@ -642,14 +644,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myFirstApp/templates/myFirstApp/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="58" column="20" lean-forward="true" selection-start-line="58" selection-start-column="20" selection-end-line="58" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myFirstApp/templates/myFirstApp/categoryDetail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -708,13 +702,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myFirstApp/urls.py">
+    <entry file="file://$PROJECT_DIR$/myFirstApp/templates/myFirstApp/listCustomer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" column="51" lean-forward="false" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/myFirstApp/templates/myFirstApp/orderOfCustomer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="41" lean-forward="false" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -728,19 +728,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myFirstApp/templates/myFirstApp/orderOfCustomer.html">
+    <entry file="file://$PROJECT_DIR$/myFirstApp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="41" lean-forward="false" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-          <folding />
+        <state relative-caret-position="255">
+          <caret line="15" column="19" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myFirstApp/templates/myFirstApp/listCustomer.html">
+    <entry file="file://$PROJECT_DIR$/myFirstApp/templates/myFirstApp/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="51" lean-forward="false" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
-          <folding />
+        <state relative-caret-position="289">
+          <caret line="53" column="70" lean-forward="false" selection-start-line="53" selection-start-column="70" selection-end-line="53" selection-end-column="70" />
+          <folding>
+            <element signature="n#style#0;n#header#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

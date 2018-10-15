@@ -43,11 +43,21 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
   <!-- Push down content on small screens -->
   <div class="w3-hide-large" style="margin-top:83px"></div>
-
+<style>
+    #menu li{
+        list-style: none;
+        float:left;
+        margin-right: 20px;
+    }
+</style>
   <!-- Top header -->
-  <header class="w3-container w3-xlarge">
-    <p class="w3-left">{% block Detail %}
-    {% endblock %}
+  <header class="w3-container w3-xlarge" style="background-color: gray">
+    <p class="w3-left">
+      <ul id="menu">
+          <li><a href="{% url "list_category" %}">categorys</a></li>
+          <li><a href="{% url "order" %}">orders</a></li>
+          <li><a href="{% url "customer" %}">customers</a></li>
+      </ul>
     </p>
     <p class="w3-right">
       <i class="fa fa-shopping-cart w3-margin-right"></i>
