@@ -1,0 +1,9 @@
+{% extends 'myFirstApp/base.html' %}
+{% block Body %}
+    <p>{{ order.customer.full_name}}</p>
+    <p>{{ order.status }}</p>
+    <p>{{ order.payment_type }}</p>
+    <td><a href="{% url "detailOrder" order.id%}">detail</a></td>
+    <td><a href="{% url "updateOrder" order.id %}">update</a></td>
+    <td><a href="#">delete</a></td>
+{% endblock %}

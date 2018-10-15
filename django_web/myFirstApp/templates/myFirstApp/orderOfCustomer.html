@@ -1,0 +1,15 @@
+{% extends "myFirstApp/base.html" %}
+{% block Body %}
+
+    {% for order in customer.order_set.all %}
+        <div>
+        <h1>order of {{ customer.full_name }}</h1>
+        <p>customer    : {{ order.customer }}</p>
+        <p>payment_type: {{ order.payment_type }}</p>
+        <p>status      : {{ order.status }}</p>
+        <p>date        : {{ order.date }}</p>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

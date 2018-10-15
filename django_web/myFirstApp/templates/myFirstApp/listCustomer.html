@@ -1,0 +1,9 @@
+{% extends "myFirstApp/base.html" %}
+{% block Body %}
+    <ul>
+        {% for customer in object_list %}
+               <li><a href="customer/{{ customer.id }}">{{ customer.full_name }}</a></li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

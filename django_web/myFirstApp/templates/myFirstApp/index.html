@@ -1,0 +1,6 @@
+{% extends "myFirstApp/base.html" %}
+{% block MenuBar %}
+{% for pro in object_list %}
+          <a href="{% url "detail" pro.id %}" class="w3-bar-item w3-button" >{{ pro.name}}</a>
+      {% endfor %}
+{% endblock %}
