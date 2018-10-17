@@ -27,4 +27,7 @@ a{% extends "myFirstApp/base.html" %}
         </tr>
     {% endfor %}
     </table>
+    {% for order in filter %}
+        {{ order.customer.full_name }}
+    {% endfor %}
 {%  endblock %}
