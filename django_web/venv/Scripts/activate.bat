@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=D:\webdjango\django_web\venv"
+set "VIRTUAL_ENV=D:\webdjango\payment\django_web\venv"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

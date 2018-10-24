@@ -28,6 +28,8 @@ class Category(models.Model):
     def __str__(self):
         return '%s' % (self.name)
 
+
+
 class Product(models.Model):
     category=models.ForeignKey(Category,on_delete=models.CASCADE,default=None)
     name=models.CharField(max_length=100)

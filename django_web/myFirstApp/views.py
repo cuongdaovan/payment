@@ -1,64 +1,61 @@
-from django.shortcuts import render,get_object_or_404,redirect
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here.
-from django.http import HttpResponse,Http404
-from django.views import View
-from django.views.generic import TemplateView, DetailView,FormView,ListView,UpdateView,DeleteView,RedirectView
-from .models import Product,Category,Order, Customer
-from django.utils import timezone
+from django.views import generic
 from django.urls import reverse_lazy
 
+from .models import Product, Category, Order, Customer
 
-class ListProduct(ListView):
+
+class ListProduct(generic.ListView):
     template_name = "myFirstApp/index.html"
     model = Product
 
 
-class DetailProduct(DetailView):
+class DetailProduct(generic.DetailView):
     template_name = "myFirstApp/detail.html"
     model = Product
     success_url = reverse_lazy('product-list')
     # queryset = Product.objects.all()
 
 
-class ListCategory(ListView):
+class ListCategory(generic.ListView):
     template_name = "myFirstApp/categoryIndex.html"
     model = Category
 
 
-class CategoryDetail(DetailView):
+class CategoryDetail(generic.DetailView):
     template_name = "myFirstApp/categoryDetail.html"
     model = Category
 
-class ListOrder(ListView):
+
+class ListOrder(generic.ListView):
     template_name = "myFirstApp/listOrder.html"
     model = Order
+
     def get_context_data(self, *, object_list=Order, **kwargs):
-        data=super().get_context_data()
-        data['filter']=Order.objects.filter(status__startswith="a")
+        data = super().get_context_data()
+        data['filter'] = Order.objects.filter(status__startswith="a")
         return data
-class DetailOrder(DetailView):
+
+
+class DetailOrder(generic.DetailView):
     template_name = "myFirstApp/detailOrder.html"
     model = Order
 
-class UpdateOrder(UpdateView):
+
+class UpdateOrder(generic.UpdateView):
     model = Order
     template_name = "myFirstApp/updateOrder.html"
-    fields = ['customer','payment_type','status','date']
+    fields = ['customer', 'payment_type', 'status', 'date']
     template_name_suffix = '_update_form'
 
-class ListCustomer(ListView):
+
+class ListCustomer(generic.ListView):
     model = Customer
     template_name = "myFirstApp/listCustomer.html"
 
 
-class OrderOfCustomer(DetailView):
+class OrderOfCustomer(generic.DetailView):
     model = Customer
     template_name = "myFirstApp/orderOfCustomer.html"
-
-
-
-
-
-
-
