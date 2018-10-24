@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 django = "==2.1.2"
 pillow = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
 
 [dev-packages]
 
