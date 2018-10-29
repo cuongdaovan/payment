@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib import auth
 
 
 # Create your models here.
@@ -27,9 +28,10 @@ class Customer(models.Model):
 
 
 class Category(models.Model):
+    owner = models.ForeignKey('auth.User', related_name='categories', on_delete=models.CASCADE, default=None)
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=200)
-    image = models.ImageField("imageCat")
+    image = models.ImageField()
     price = models.FloatField()
 
     def __str__(self):
@@ -37,7 +39,8 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None)
+    owner = models.ForeignKey('auth.User', related_name='products', on_delete=models.CASCADE, default=None)
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE, default=None)
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=200)
     image = models.ImageField()
@@ -50,6 +53,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
+    owner = models.ForeignKey('auth.User', related_name='orders', on_delete=models.CASCADE, default=None)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, default=None)
     payment_type = models.CharField(max_length=100)
     date = models.DateField("ngay dat hang")
@@ -63,6 +67,7 @@ class Order(models.Model):
 
 
 class Order_item(models.Model):
+    owner = models.ForeignKey('auth.User', related_name='order_items', on_delete=models.CASCADE, default=None)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, default=None)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, default=None)
     quanlity = models.CharField(max_length=100)
