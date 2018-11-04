@@ -3,69 +3,78 @@ from django.shortcuts import render, get_object_or_404, redirect
 # Create your views here.
 from django.views import generic
 from django.urls import reverse_lazy
+
 from rest_framework import viewsets
-from myFirstApp.serializers import ProductSerializer
+from rest_framework.response import Response
 
-from .models import Product, Category, Order, Customer
+from myFirstApp import serializers
+from myFirstApp import models
 
 
-class ProductViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+class CategoryViewSet(viewsets.ViewSet):
+    """docstring for CategoryViewSet"""
+    def list(self, request):
+        queryset = models.Category.objects.all()
+        serializer = serializers.CategorySerializer(queryset, many=True)
+        return Response(serializer.data)
+        
+
+class ProductViewSet(viewsets.ViewSet):
+    def list(self, request):
+        queryset = models.Category.objects.all()
+        serializer = serializers.CategorySerializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 class ListProduct(generic.ListView):
     template_name = "myFirstApp/index.html"
-    model = Product
+    model = models.Product
 
 
 class DetailProduct(generic.DetailView):
     template_name = "myFirstApp/detail.html"
-    model = Product
+    model = models.Product
     success_url = reverse_lazy('product-list')
     # queryset = Product.objects.all()
 
 
 class ListCategory(generic.ListView):
     template_name = "myFirstApp/categoryIndex.html"
-    queryset = Category.objects.all()
+    queryset = models.Category.objects.all()
 
 
 class CategoryDetail(generic.DetailView):
     template_name = "myFirstApp/categoryDetail.html"
-    model = Category
+    model = models.Category
 
 
 class ListOrder(generic.ListView):
     template_name = "myFirstApp/listOrder.html"
-    model = Order
+    model = models.Order
 
-    def get_context_data(self, *, object_list=Order, **kwargs):
+    def get_context_data(self, *, object_list=models.Order, **kwargs):
         data = super().get_context_data()
-        data['filter'] = Order.objects.filter(status__startswith="a")
+        data['filter'] = models.Order.objects.filter(status__startswith="a")
         return data
 
 
 class DetailOrder(generic.DetailView):
     template_name = "myFirstApp/detailOrder.html"
-    model = Order
+    model = models.Order
 
 
 class UpdateOrder(generic.UpdateView):
-    model = Order
+    model = models.Order
     template_name = "myFirstApp/updateOrder.html"
     fields = ['customer', 'payment_type', 'status', 'date']
     template_name_suffix = '_update_form'
 
 
 class ListCustomer(generic.ListView):
-    model = Customer
+    model = models.Customer
     template_name = "myFirstApp/listCustomer.html"
 
 
 class OrderOfCustomer(generic.DetailView):
-    model = Customer
+    model = models.Customer
     template_name = "myFirstApp/orderOfCustomer.html"

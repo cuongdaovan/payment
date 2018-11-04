@@ -6,6 +6,12 @@ from myFirstApp import  models
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Product
-        fields = ('id','name')
+        fields = ('__all__')
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Category
+        fields = ('__all__')
 
 
