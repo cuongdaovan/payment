@@ -22,14 +22,10 @@ from myFirstApp import views
 router = routers.DefaultRouter()
 router.register('products', views.ProductViewSet)
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
-urlpatterns = [
-    path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('myFirstApp.urls')),
+    path('shop/', include('myFirstApp.urls')),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
