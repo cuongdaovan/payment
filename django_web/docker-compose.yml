@@ -1,6 +1,7 @@
-version: "2"
+version: "2.2"
 services:
   django:
+    restart: always
     container_name: django_server
     build:
       context: .
@@ -11,4 +12,4 @@ services:
     volumes:
       - .:/var/www/myproject
     ports:
-      - "8000:8000"
+      - "8080:8080"

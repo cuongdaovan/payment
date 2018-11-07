@@ -1,29 +1,52 @@
-from django.shortcuts import render, get_object_or_404, redirect
-
 # Create your views here.
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
+from django.contrib.auth import views, forms
+from django.http import HttpResponseRedirect
 
+from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework_simplejwt import tokens
+from rest_framework import urls
 
 from myFirstApp import serializers
 from myFirstApp import models
 
+class Login(views.LoginView):
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        token = tokens.AccessToken().for_user(user=self.request.user)
+        print(token)
+        return context
+
 
 class CategoryViewSet(viewsets.ViewSet):
-    """docstring for CategoryViewSet"""
+
     def list(self, request):
+        permission_classes = (AllowAny,)
         queryset = models.Category.objects.all()
         serializer = serializers.CategorySerializer(queryset, many=True)
         return Response(serializer.data)
-        
+
+    def retrieve(self, request, pk=None):
+        permission_classes = (IsAdminUser,)
+        queryset = models.Category.objects.all()
+        serializer = serializers.CategorySerializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 class ProductViewSet(viewsets.ViewSet):
     def list(self, request):
+        permission_classes = (AllowAny,)
+        token = tokens.AccessToken().for_user(user=request.user)
         queryset = models.Category.objects.all()
         serializer = serializers.CategorySerializer(queryset, many=True)
-        return Response(serializer.data)
+        response = Response({'product-list': serializer.data, 'token': str(token)})
+        response.set_cookie('token', token)
+        return response
 
 
 class ListProduct(generic.ListView):

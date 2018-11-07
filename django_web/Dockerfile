@@ -14,7 +14,7 @@ COPY Pipfile Pipfile.lock ./
 RUN pip install -U pipenv
 RUN pipenv install --system
 # Server
-EXPOSE 8000
+EXPOSE 8080
 STOPSIGNAL SIGINT
 ENTRYPOINT ["python", "manage.py"]
-CMD ["runserver", "0.0.0.0:8000"]
+CMD ["runserver", "0.0.0.0:8080"]

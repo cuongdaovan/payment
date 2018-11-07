@@ -14,11 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.contrib.auth.models import User
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
 
-from rest_framework import routers
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework import routers, urls
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 from myFirstApp import views
 
@@ -31,7 +31,9 @@ urlpatterns = [
     path('shop/', include('myFirstApp.urls')),
     path('api/v1/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api/v1/token/', TokenObtainPairView.as_view()),
-    path('api/v1/refresh/', TokenRefreshView.as_view())
-
+    # path('login/', views.Login.as_view(template_name='myFirstApp/login.html'), name='login'),
+]
+urls.urlpatterns = [
+    path('login/', views.Login.as_view(template_name='rest_framework/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]

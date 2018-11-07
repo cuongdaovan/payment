@@ -1,8 +1,10 @@
 from django.db import models
 from django.urls import reverse
 
-
 # Create your models here.
+class classname(object):
+    pass
+
 
 class Customer(models.Model):
     forename = models.CharField(max_length=50)
