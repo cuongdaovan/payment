@@ -1,51 +1,68 @@
 # Create your views here.
-from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse_lazy
-from django.contrib.auth import views, forms
+from django.contrib.auth import views
 from django.http import HttpResponseRedirect
+from django.contrib.auth import (
+    login as auth_login,
+)
 
 from rest_framework.permissions import IsAdminUser, AllowAny
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework_simplejwt import tokens
-from rest_framework import urls
+from rest_framework_simplejwt import serializers as jwt_serializer
 
 from myFirstApp import serializers
 from myFirstApp import models
 
-class Login(views.LoginView):
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        token = tokens.AccessToken().for_user(user=self.request.user)
-        print(token)
-        return context
+class Login(views.LoginView):
+    token = None
+
+    def form_valid(self, form):
+        """Security check complete. Log the user in."""
+        auth_login(self.request, form.get_user())
+        self.token = jwt_serializer.TokenObtainPairSerializer.get_token(user=self.request.user)
+        print(self.token)
+        # self.token = tokens.AccessToken().for_user(user=self.request.user)
+        response = HttpResponseRedirect(self.get_success_url())
+        response.set_cookie('token', self.token)
+        return response
 
 
 class CategoryViewSet(viewsets.ViewSet):
+    permission_classes = (AllowAny,)
 
     def list(self, request):
-        permission_classes = (AllowAny,)
+        data = {'token': request.COOKIES.get('token')}
+        valid_data = jwt_serializer.TokenVerifySerializer().validate(data)
         queryset = models.Category.objects.all()
         serializer = serializers.CategorySerializer(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        permission_classes = (IsAdminUser,)
-        queryset = models.Category.objects.all()
+        data = {'token': request.COOKIES.get('token')}
+        valid_data = jwt_serializer.TokenVerifySerializer().validate(data)
+        if valid_data == '':
+            queryset = models.Category.objects.all()
+            print('cuong')
+        else:
+            queryset = None
         serializer = serializers.CategorySerializer(queryset, many=True)
         return Response(serializer.data)
 
 
 class ProductViewSet(viewsets.ViewSet):
     def list(self, request):
-        permission_classes = (AllowAny,)
-        token = tokens.AccessToken().for_user(user=request.user)
+        data = {'refresh': request.COOKIES.get('token')}
+        token = None
+        token = jwt_serializer.TokenRefreshSerializer.validate(self, data)
+        print(token)
         queryset = models.Category.objects.all()
         serializer = serializers.CategorySerializer(queryset, many=True)
         response = Response({'product-list': serializer.data, 'token': str(token)})
-        response.set_cookie('token', token)
+        # response.set_cookie('token', token)
         return response
 
 

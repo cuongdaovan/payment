@@ -31,9 +31,11 @@ urlpatterns = [
     path('shop/', include('myFirstApp.urls')),
     path('api/v1/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    # path('login/', views.Login.as_view(template_name='myFirstApp/login.html'), name='login'),
+    path('api/v1/token/', TokenObtainPairView.as_view()),
+    path('api/v1/refresh-token/', TokenRefreshView.as_view()),
+    path('api/v1/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 ]
-urls.urlpatterns = [
-    path('login/', views.Login.as_view(template_name='rest_framework/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-]
+# urls.urlpatterns = [
+#     path('login/', views.Login.as_view(template_name='rest_framework/login.html'), name='login'),
+#     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+# ]

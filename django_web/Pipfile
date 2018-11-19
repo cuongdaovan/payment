@@ -8,6 +8,8 @@ django = "==2.1.2"
 pillow = "*"
 djangorestframework = "*"
 djangorestframework-simplejwt = "*"
+mysqlclient = "*"
+"psycopg2" = "*"
 
 [dev-packages]
 

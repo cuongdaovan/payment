@@ -1,20 +1,12 @@
 # My Site
 # Version: 1.0
-FROM python:3
-# Install Python and Package Libraries
-RUN apt-get update && apt-get upgrade -y && apt-get autoremove && apt-get autoclean
-RUN apt-get install -y \
-    vim
-# Project Files and Settings
-ARG PROJECT=myproject
-ARG PROJECT_DIR=/var/www/${PROJECT}
-RUN mkdir -p $PROJECT_DIR
-WORKDIR $PROJECT_DIR
+FROM python:3.6
+WORKDIR /payment
+# copy the current directory contents into the containers at /payment
+COPY . /payment
+# copy pipfile  pipfile.lock into /paymment
 COPY Pipfile Pipfile.lock ./
 RUN pip install -U pipenv
 RUN pipenv install --system
-# Server
 EXPOSE 8080
-STOPSIGNAL SIGINT
-ENTRYPOINT ["python", "manage.py"]
-CMD ["runserver", "0.0.0.0:8080"]
+CMD ["python","manage.py","runserver", "0.0.0.0:8080"]
